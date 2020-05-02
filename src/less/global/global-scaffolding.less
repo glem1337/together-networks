@@ -1,0 +1,311 @@
+@import './src/less/variables.less';     // только для удобства обращения к переменным
+
+
+
+//------------------------------------------------------------------------------
+//  Базовая стилизация. Одновременно и аналог CSS-normalize, и стилизация тегов.
+//------------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------------
+//  Общие правила
+//------------------------------------------------------------------------------
+
+// Make viewport responsive
+// see http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+@at-root {
+  @-ms-viewport {
+    width: device-width;
+  }
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// see: https://github.com/suitcss/base
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+// iOS 'clickable elements' fix for role='button'
+// see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+[role='button'] {
+  cursor: pointer;
+}
+
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+// see:
+// http://v4-alpha.getbootstrap.com/content/reboot/#click-delay-optimization-for-touch
+// http://caniuse.com/#feat=css-touch-action
+// http://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+
+
+//------------------------------------------------------------------------------
+//  Базис
+//------------------------------------------------------------------------------
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 8px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-overflow-style: scrollbar;
+  -ms-text-size-adjust: 100%;
+  min-width: 320px;
+  min-height: 100%;
+
+  @media (min-width: @screen-sm) {
+    font-size: 10px;
+  }
+}
+
+body {
+  font-family: @font-family;
+  font-size: @font-size;
+  line-height: unit(@line-height);
+  color: @text-color;
+  background-color: @body-bg;
+  margin: 0;
+  min-height: 100%;
+}
+
+a {
+  color: @link-color;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+
+
+//------------------------------------------------------------------------------
+//  Типографика
+//------------------------------------------------------------------------------
+
+// .h1,
+h1 {
+  font-size: @font-size--h1;
+}
+// .h2,
+h2 {
+  font-size: @font-size--h2;
+}
+// .h3,
+h3 {
+  font-size: @font-size--h3;
+}
+// .h4,
+h4 {
+  font-size: @font-size--h4;
+}
+// .h5,
+h5 {
+  font-size: @font-size--h5;
+}
+// .h6,
+h6 {
+  font-size: @font-size--h6;
+}
+
+// .h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  line-height: 1.2;
+  color: currentColor;
+}
+
+// .h1, .h2, .h3,
+h1, h2, h3 {
+  margin-bottom: (@line-height / 2);
+}
+
+// .h4, .h5, .h6,
+h4, h5, h6 {
+  margin-top: (@line-height / 2);
+  margin-bottom: (@line-height / 2);
+}
+
+
+// .small,
+small {
+  font-size: @font-size--small-percent;
+}
+
+
+.button-gradient {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 12px 16px;
+  -webkit-border-radius: @border-radius;
+  -moz-border-radius: @border-radius;
+  border-radius: @border-radius;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  background: @blue-gradient;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    filter: drop-shadow(0px 1px 8.5px rgba(43, 160, 234, 0.66));
+  }
+
+  &--bg--green {
+    background: @green-gradient;
+
+    &:hover {
+      filter: drop-shadow(0px 1px 8.5px rgba(76, 175, 80, 0.66));
+    }
+  }
+}
+
+.button-login {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  padding: 10px 18px;
+  -webkit-border-radius: @border-radius;
+  -moz-border-radius: @border-radius;
+  border-radius: @border-radius;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  border: 2px solid #ffffff;
+
+  &:hover {
+    border: none;
+    padding: 12px 20px;
+    background: @blue-gradient;
+  }
+}
+
+
+.custom-select-wrapper {
+  width: 100%;
+  text-align: center;
+
+  .select {
+    display: none;
+  }
+
+  .custom-select {
+    font-size: 18px;
+    position: relative;
+
+    &__trigger {
+      position: relative;
+      cursor: pointer;
+      padding: 17px 35px;
+      width: 100%;
+      background-color: #fff;
+      -webkit-border-radius: @border-radius;
+      -moz-border-radius: @border-radius;
+      border-radius: @border-radius;
+
+      &.is-active {
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid @text-color;
+        position: absolute;
+        margin-top: -3px;
+        top: 50%;
+        right: 20px;
+      }
+    }
+
+    &__options {
+      display: none;
+      padding: 0 5px 5px;
+      margin-top: -5px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: auto;
+      background-color: #fff;
+      -webkit-border-radius: @border-radius;
+      -moz-border-radius: @border-radius;
+      border-radius: @border-radius;
+    }
+
+    &__options-inner {
+      padding: 0 5px;
+      max-height: 160px;
+      overflow-y: auto;
+      scrollbar-base-color: @gray-select;
+      scrollbar-face-color: @gray-select;
+      scrollbar-3dlight-color: @gray-select;
+      scrollbar-highlight-color: @gray-select;
+      scrollbar-track-color: #fff;
+      scrollbar-arrow-color: #fff;
+      scrollbar-shadow-color: @gray-select;
+      scrollbar-dark-shadow-color: @gray-select;
+
+      scrollbar-width: thin;
+      scrollbar-color: @gray-select #fff;
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: @gray-select;
+      }
+    }
+
+    &__option {
+      margin-bottom: 10px;
+      padding: 5px;
+      cursor: pointer;
+      -webkit-border-radius: @border-radius;
+      -moz-border-radius: @border-radius;
+      border-radius: @border-radius;
+
+      &:hover {
+        font-weight: bold;
+        background-color: @gray-select;
+      }
+    }
+  }
+}

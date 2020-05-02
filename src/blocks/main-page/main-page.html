@@ -1,0 +1,31 @@
+<!--DEV
+
+Нужно убрать пробел между @-ами:
+
+@ @include('blocks/main-page/main-page.html')
+
+-->
+<main class="main-page">
+
+  <div class="main-page__header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <a href="/" class="main-page__logo">
+            <img src="/img/logo.png" alt="">
+          </a>
+        </div>
+        <div class="col-xs-6 main-page__login">
+          @@include('../form-login/form-login.html')
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main-page__inner container">
+    <h1 class="main-page__title">StarCompany DESIGNS, MANUFACTURES AND Launches Advanced Rockets and Spacecrafts</h1>
+    @@include('../form/form.html')
+  </div>
+
+</main>
