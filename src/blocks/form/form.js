@@ -25,7 +25,7 @@ StepForm.prototype = {
   formSend: function (formData) {
     // Таким способом только из-за поддержки IE и без дополнительных полифилов :(
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://www.mocky.io/v2/5dfcef48310000ee0ed2c281', true);
+    xhr.open('POST', 'https://www.mocky.io/v2/5dfcef48310000ee0ed2c281', true);
     xhr.send(formData);
     xhr.addEventListener('readystatechange', function (e) {
       if (xhr.readyState !== 4) return;

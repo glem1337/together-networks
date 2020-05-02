@@ -36,7 +36,7 @@
     "mkdirp": "^0.5.1"
   },
   "config": {
-    "ghPages": "http://nicothin.github.io/NTH-start-project/blocks_library.html",
+    "ghPages": "https://glem1337.github.io/together-networks/",
     "directories": {
       "source": "./src",
       "build": "./build"
